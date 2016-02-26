@@ -55,8 +55,7 @@ class WaterMark{
       * @param $type
       * @return resource
       */
-function getType($img, $type)
-     {
+     function getType($img, $type){
         switch($type){
             case 1:
                 $im = imagecreatefromgif($img);                
