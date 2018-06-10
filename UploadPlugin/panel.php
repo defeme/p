@@ -17,13 +17,13 @@ include 'menu.php';
                 <ul class="typecho-option-tabs">
                     <li <?php if(!isset($request->p)){ ?>class="current"<?php }?>><a href="<?php $options->adminUrl('extending.php?panel=UploadPlugin%2Fpanel.php'); ?>"><?php _e('插件管理'); ?></a></li>
                     <li <?php if(1 == $request->p){ ?>class="current"<?php }?>><a href="<?php $options->adminUrl('extending.php?panel=UploadPlugin%2Fpanel.php&p=1'); ?>"><?php _e('模板管理'); ?></a></li>
-                    <li><?php  _e(' %s选择文件上传%s', '<a href="###" class="upload-file">', '</a>'); ?></li>                
+                    <li><a href='###'><span id="singleupload">上传插件</span></a></li>                
                  </ul>
                 </div>
                 
                 <!---插件管理--->
                 <?php if(!isset($request->p)): ?>
-                <?php Typecho_Widget::widget('Widget_Plugins_List_Deactivated')->to($deactivatedPlugins); ?>
+                <?php Typecho_Widget::widget('Widget_Plugins_List@unactivated', 'activated=0')->to($deactivatedPlugins); ?>
                 
                 <h4 class="typecho-list-table-title"><?php _e('可删除的插件'); ?></h4>
                 <div class="typecho-table-wrap">
@@ -65,7 +65,7 @@ include 'menu.php';
                     </table>
                 </div>
                 
-              <?php Typecho_Widget::widget('Widget_Plugins_List_Activated')->to($activatedPlugins); ?>
+              <?php Typecho_Widget::widget('Widget_Plugins_List@activated', 'activated=1')->to($activatedPlugins); ?>
                 <?php if ($activatedPlugins->have() || !empty($activatedPlugins->activatedPlugins)): ?>
                 <h4 class="typecho-list-table-title"><?php _e('启用的插件'); ?></h4>
                 <div class="typecho-table-wrap">
