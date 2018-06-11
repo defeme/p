@@ -15,9 +15,7 @@ class CommentSendCloud implements Typecho_Plugin_Interface {
      * @return void
      * @throws Typecho_Plugin_Exception
      */
-    public static function activate() {
-        
-        //Helper::addAction('comment-to-sendcloud', 'CommentToSendCloud_Action');
+    public static function activate() {  
         Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('CommentSendCloud', 'toSendCloud');
         return _t('请对插件进行正确设置，以使插件顺利工作！');
     }
@@ -30,9 +28,7 @@ class CommentSendCloud implements Typecho_Plugin_Interface {
      * @return void
      * @throws Typecho_Plugin_Exception
      */
-    public static function deactivate() {
-        //Helper::removeAction('comment-to-sendcloud');
-    }
+    public static function deactivate() { }
 
     /**
      * 获取插件配置面板
@@ -199,8 +195,7 @@ class CommentSendCloud implements Typecho_Plugin_Interface {
         // 获取错误信息
         $error = curl_error($ch);
         
-        if($result === false) {
-            //echo curl_error($ch);
+        if($result === false) {            
             file_put_contents('.'.__TYPECHO_PLUGIN_DIR__.'/CommentSendCloud_log.txt', $result.$error);
         }
         // 关闭curl
